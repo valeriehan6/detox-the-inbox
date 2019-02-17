@@ -3,7 +3,13 @@ import mailbox
 
 # Returns true if message is unread and false if message is read
 def unread(message):
-  
+    flags = []
+    flags = message['X-Gmail0Labels'].split(",")
+    for flag in flags:
+        if flag = "Unread":
+            return True
+        else:
+            return False
 
 def create_dict(filename):
     mbox = mailbox.mbox(filename)
