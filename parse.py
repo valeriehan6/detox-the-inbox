@@ -5,13 +5,13 @@ n = 0 # n is the total number of messages seen so far
 
 # Returns true if message is unread and false if message is read
 def unread(message):
-    flags = []
-    flags = message['X-Gmail0Labels'].split(",")
-    for flag in flags:
-        if flag = "Unread":
-            return True
-        else:
-            return False
+  flags = []
+  flags = message['X-Gmail-Labels'].split(",")
+  for flag in flags:
+    if flag == "Unread":
+      return True
+  
+  return False
 
 # Input: - filename: mbox file
 # Output: - senders: dictionary of senders
