@@ -5,30 +5,28 @@ import mailbox
 def unread(message):
   
 
+# Returns dictionary of senders
+# Each key is a sender and each value is a size 2 list with first elt=number unread and second elt=total (read and unread)
 def create_dict(filename):
-    mbox = mailbox.mbox(filename)
-    senders = dict() # Dictionary with sender as key and size 2 list as value with first elt=number unread and second elt=number read
-    senders = {}
+  mbox = mailbox.mbox(filename)
+  senders = dict() 
+  senders = {}
 
-    for message in mbox:
-      sender = message['From']
-      # Checks if sender is already in the dictionary
-      if sender in senders:
-        if unread(message):
-          senders[sender][0] += 1
-        senders[sender][1] += 1
+  for message in mbox:
+    sender = message['From']
+    # Checks if sender is already added
+    if sender in senders:
+      if unread(message):
+        senders[sender][0] += 1
+      senders[sender][1] += 1
+    else:
+      senders[sender]=[0,0]
+      if unread(message):
+        senders[sender][0] = 1
+      senders[sender][1] = 1
 
-    if __name__ == "__main__":
-        if len(sys.argv) != 2:
-            print 'Usage: python genarchivesum.py mbox'
-            sys.exit(1)
-
-    gen_summary(sys.argv[1])
-
-senders = dict()
-senders = {}
-
-senders[sender] 
+  return senders;
+  
 
 
 
